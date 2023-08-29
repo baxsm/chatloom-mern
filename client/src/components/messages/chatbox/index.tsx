@@ -4,19 +4,24 @@ import Chatfeed from "./Chatfeed";
 import MessageForm from "./MessageForm";
 
 interface ChatboxProps {
-  setIsSideinfoActive: Dispatch<SetStateAction<boolean>>
+  setIsSideinfoActive: Dispatch<SetStateAction<boolean>>;
   isSideinfoActive: boolean;
 }
 
-const Chatbox: FC<ChatboxProps> = ({setIsSideinfoActive, isSideinfoActive}) => {
-
+const Chatbox: FC<ChatboxProps> = ({
+  setIsSideinfoActive,
+  isSideinfoActive,
+}) => {
   return (
-    <div className="mt-8 h-full bg-dark-2 rounded-tl-[2rem] rounded-tr-[2rem]">
-      <ChatboxHeader setIsSideinfoActive={setIsSideinfoActive} isSideinfoActive={isSideinfoActive}/>
-      <div className="flex-col h-[calc(100vh-300px)]">
+    <div className="bg-dark-2 border-2 border-secondary/10 rounded-[2rem]">
+      <ChatboxHeader
+        setIsSideinfoActive={setIsSideinfoActive}
+        isSideinfoActive={isSideinfoActive}
+      />
+      <div className="flex-col h-[calc(100vh-350px)]">
         <Chatfeed />
       </div>
-      <div className="px-8">
+      <div className="">
         <MessageForm />
       </div>
     </div>

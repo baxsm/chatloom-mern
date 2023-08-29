@@ -6,7 +6,7 @@ import {AiOutlineSearch} from "react-icons/ai"
 
 const Sidebar: FC= () => {
   return (
-    <section className="max-h-screen h-screen p-8">
+    <section className="max-h-screen h-full">
       <div className="bg-dark-3 rounded-xl flex gap-1 items-center pl-4 py-1">
         <AiOutlineSearch className="text-white text-xl"/>
         <Input type="text" className="pr-4 bg-transparent border-none outline-none" placeholder="Search"/>

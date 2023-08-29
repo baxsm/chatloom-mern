@@ -3,6 +3,8 @@ import { FC } from "react";
 import { Button } from "../ui/button";
 import { navLinks } from "@/constants/navigation";
 import { useLocation, useNavigate } from "react-router-dom";
+import UserDropdownMenu from "./UserDropdownMenu";
+import { Link } from "react-router-dom";
 
 const Navbar: FC = () => {
   const location = useLocation();
@@ -10,8 +12,10 @@ const Navbar: FC = () => {
 
   return (
     <nav className="p-8 flex items-center justify-between bg-dark-2 border-b-[1px] border-primary h-[100px]">
+      <Link to="/" className="flex items-center">
+        <img className="w-16" src="/logo.png" />
+      </Link>
       <div className="flex items-center gap-8">
-        <div className="text-primary font-semibold text-2xl">Logo</div>
         <div className="flex items-center gap-4">
           {navLinks.map((item) => {
             const Icon = item.icon;
@@ -33,8 +37,8 @@ const Navbar: FC = () => {
             );
           })}
         </div>
+        <UserDropdownMenu />
       </div>
-      <div className="">User</div>
     </nav>
   );
 };

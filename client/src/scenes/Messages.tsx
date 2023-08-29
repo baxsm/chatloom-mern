@@ -7,14 +7,23 @@ const Messages: FC = () => {
   const [isSideinfoActive, setIsSideinfoActive] = useState(false);
 
   return (
-    <div className="flex gap-8">
-      <div className="w-[300px]">
+    <div className="flex p-8 overflow-hidden">
+      <div className="w-[300px] pr-8">
         <Sidebar />
       </div>
-      <div className={`flex-1 duration-300`}>
-        <Chatbox setIsSideinfoActive={setIsSideinfoActive} isSideinfoActive={isSideinfoActive}/>
+      <div className={`flex-1 duration-300 ${isSideinfoActive && "pr-8"}`}>
+        <Chatbox
+          setIsSideinfoActive={setIsSideinfoActive}
+          isSideinfoActive={isSideinfoActive}
+        />
       </div>
-      <div className={`${isSideinfoActive ? "w-[300px]" : "w-0"} duration-300`}>
+      <div
+        className={`${
+          isSideinfoActive
+            ? "w-[300px] translate-x-0 pr-8"
+            : "w-0 translate-x-[400px]"
+        } duration-300`}
+      >
         <Sideinfo />
       </div>
     </div>

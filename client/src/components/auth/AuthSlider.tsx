@@ -16,9 +16,16 @@ const AuthSlider: FC = () => {
     <div className="relative h-full w-full">
       <Swiper
         navigation={{ prevEl, nextEl }}
-        pagination={true}
+        pagination={{
+          el: ".customPagination",
+          clickable: true,
+          renderBullet: function(index, className) {
+            return `<span id="dot_${index}" class="${className} !bg-primary-background"></span>`
+          }
+        }}
         modules={[Navigation, Pagination]}
         speed={1200}
+        allowTouchMove={false}
         spaceBetween={50}
         loop
         className="h-full w-[44vw]"
@@ -28,7 +35,7 @@ const AuthSlider: FC = () => {
             key={item.id}
             className="flex justify-start items-center h-full "
           >
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center relative">
               <img
                 className="object-cover min-w-[44vw] rounded-2xl h-[95vh]"
                 src={item.imageUrl}
@@ -37,6 +44,7 @@ const AuthSlider: FC = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="customPagination absolute h-fit !bottom-[6vh] !left-[18vw] !z-[20] flex items-center gap-8"></div>
       <div className="flex justify-between items-center absolute bottom-[2vh] left-[2.6vw] w-[45vw] z-20">
         <Button
           ref={(node) => setPrevEl(node)}

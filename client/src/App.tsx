@@ -1,4 +1,9 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 import Messages from "./scenes/Messages";
 import Navbar from "./components/navbar";
 import Settings from "./scenes/Settings";
@@ -7,6 +12,8 @@ import Login from "./scenes/auth/Login";
 import Register from "./scenes/auth/Register";
 import Onboarding from "./scenes/auth/Onboarding";
 import AuthSlider from "./components/auth/AuthSlider";
+import { PropsWithChildren } from "react";
+import { useUser } from "./hooks/auth/useUser";
 
 const MessagesWrapper = () => {
   return (
@@ -21,8 +28,8 @@ const MessagesWrapper = () => {
 
 const AuthWrapper = () => {
   return (
-    <main className="grid grid-flow-row xl:grid-cols-2 h-screen">
-      <section className="hidden xl:block">
+    <main className={`grid grid-flow-row xl:grid-cols-2 h-screen`}>
+      <section className={`hidden xl:block`}>
         <AuthSlider />
       </section>
       <article className="w-full p-12 xl:p-4">
@@ -32,10 +39,24 @@ const AuthWrapper = () => {
   );
 };
 
+const ProtectedRoutes = ({ children }: PropsWithChildren) => {
+  const { user } = useUser();
+  if (!user) {
+    return <Navigate to="/auth/login" replace />;
+  } else if (!user.onboarding) {
+    return <Navigate to="/auth/onboarding" replace />;
+  }
+  return <>{children}</>;
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MessagesWrapper />,
+    element: (
+      <ProtectedRoutes>
+        <MessagesWrapper />
+      </ProtectedRoutes>
+    ),
     children: [
       {
         path: "/",
@@ -62,7 +83,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/onboarding",
+    path: "/auth/onboarding",
     element: <Onboarding />,
   },
   {
