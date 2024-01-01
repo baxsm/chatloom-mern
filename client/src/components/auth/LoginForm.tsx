@@ -64,6 +64,7 @@ const LoginForm: FC = () => {
                 <div className="relative flex items-center">
                   <AiOutlineMail className="absolute left-4 text-base text-secondary" />
                   <Input
+                    disabled={isLoading}
                     placeholder="Email"
                     {...field}
                     className="bg-transparent rounded-xl px-12 py-6 focus:ring-2 focus:ring-primary-background"
@@ -86,6 +87,7 @@ const LoginForm: FC = () => {
                 <div className="relative flex items-center">
                   <AiFillLock className="absolute left-4 text-base text-secondary" />
                   <Input
+                    disabled={isLoading}
                     placeholder="**********"
                     type={isPasswordVisible ? "text" : "password"}
                     {...field}

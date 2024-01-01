@@ -5,11 +5,11 @@ import connectDatabase from "../config/db.js";
 
 const registerUser = async (req: Request, res: Response) => {
   try {
-    connectDatabase();
+    await connectDatabase();
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
-      res.status(400).json("Missing fields");
+      res.status(405).json("Missing fields");
     }
 
     const isUserExists = await User.findOne({ email });
@@ -37,7 +37,7 @@ const registerUser = async (req: Request, res: Response) => {
 
 const authUser = async (req: Request, res: Response) => {
   try {
-    connectDatabase();
+    await connectDatabase();
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
@@ -53,6 +53,7 @@ const authUser = async (req: Request, res: Response) => {
       res.status(404).json("User not found");
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json("Something went wrong");
   }
 };

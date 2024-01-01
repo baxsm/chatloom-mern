@@ -5,8 +5,6 @@ import {
   Navigate,
 } from "react-router-dom";
 import Messages from "./scenes/Messages";
-import Navbar from "./components/navbar";
-import Settings from "./scenes/Settings";
 import PageNotFound from "./scenes/PageNotFound";
 import Login from "./scenes/auth/Login";
 import Register from "./scenes/auth/Register";
@@ -14,17 +12,6 @@ import Onboarding from "./scenes/auth/Onboarding";
 import AuthSlider from "./components/auth/AuthSlider";
 import { PropsWithChildren } from "react";
 import { useUser } from "./hooks/auth/useUser";
-
-const MessagesWrapper = () => {
-  return (
-    <main>
-      <Navbar />
-      <div>
-        <Outlet />
-      </div>
-    </main>
-  );
-};
 
 const AuthWrapper = () => {
   return (
@@ -54,19 +41,9 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <ProtectedRoutes>
-        <MessagesWrapper />
+        <Messages />
       </ProtectedRoutes>
     ),
-    children: [
-      {
-        path: "/",
-        element: <Messages />,
-      },
-      {
-        path: "/settings",
-        element: <Settings />,
-      },
-    ],
   },
   {
     path: "/auth",

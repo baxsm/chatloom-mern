@@ -5,7 +5,7 @@ import multer from "multer";
 
 const getUser = async (req: Request, res: Response) => {
   try {
-    connectDatabase();
+    await connectDatabase();
     const { userId } = req.body;
     const user = await User.findOne({ id: userId });
     res.status(200).json(user);
@@ -16,7 +16,7 @@ const getUser = async (req: Request, res: Response) => {
 
 const updateOnboarding = async (req: Request, res: Response) => {
   try {
-    connectDatabase();
+    await connectDatabase();
     const { userId, username, imageUrl } = req.body;
 
     const user = await User.findOneAndUpdate(

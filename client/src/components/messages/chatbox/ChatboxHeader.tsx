@@ -1,18 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { FC, Dispatch, SetStateAction } from "react";
-import { AiOutlineMenuUnfold, AiOutlineMenuFold } from "react-icons/ai";
+import { FC } from "react";
+import { AiOutlineMenuFold } from "react-icons/ai";
 
-interface ChatboxHeaderProps {
-  setIsSideinfoActive: Dispatch<SetStateAction<boolean>>;
-  isSideinfoActive: boolean;
-}
+interface ChatboxHeaderProps {}
 
-const ChatboxHeader: FC<ChatboxHeaderProps> = ({
-  setIsSideinfoActive,
-  isSideinfoActive,
-}) => {
+const ChatboxHeader: FC<ChatboxHeaderProps> = () => {
   return (
-    <div className="bg-black/80 w-full flex justify-between items-center h-[80px] rounded-tl-[2rem] rounded-tr-[2rem] px-8">
+    <div className="bg-dark-4 w-full flex justify-between items-center h-[80px] px-8">
       <div className="flex gap-8 items-center">
         <div className="">Image</div>
         <h5 className="text-sm text-secondary">
@@ -21,15 +15,8 @@ const ChatboxHeader: FC<ChatboxHeaderProps> = ({
         </h5>
       </div>
       <div className="flex gap-8 items-center">
-        <Button
-          onClick={() => setIsSideinfoActive((prev) => !prev)}
-          variant="ghost"
-          className={`text-xl rounded-xl ${
-            isSideinfoActive &&
-            "bg-primary-background hover:bg-primary-background"
-          }`}
-        >
-          {isSideinfoActive ? <AiOutlineMenuUnfold /> : <AiOutlineMenuFold />}
+        <Button variant="ghost" className={`text-xl rounded-xl`}>
+          <AiOutlineMenuFold />
         </Button>
       </div>
     </div>
